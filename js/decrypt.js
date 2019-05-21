@@ -1,0 +1,40 @@
+var aesjs = require('aes-js');
+var crypto = require('crypto');
+
+
+var kensukey = "2019-05-214a615812-9c6d-468a-b8ac-09f0193560c9"
+var encryptedSecretb64 = "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"
+var encryptedSecret = Buffer.from(encryptedSecretb64, 'base64')
+
+var kensukeyhex = crypto.createHash('sha256').update(kensukey).digest("hex");
+console.log("kensukeyhex: " + kensukeyhex)
+console.log("K1: " + kensukeyhex.length)
+
+console.log("k")
+var k = aesjs.utils.hex.toBytes(kensukeyhex)
+console.log("k: "+k)
+console.log("k length: "+k.length)
+
+console.log("aesCtr")
+var array_32bit = new Uint16Array(16);
+console.log(array_32bit)
+var aesCtr = new aesjs.ModeOfOperation.ctr(k, array_32bit);
+// var aesCtr = new aesjs.ModeOfOperation.ecb(k.slice(0, 32));
+console.log("decryptedBytes")
+var decryptedBytes = aesCtr.decrypt(encryptedSecret);
+console.log("decryptedBytes: "+decryptedBytes)
+// console.log( String.fromCharCode.apply(null, decryptedBytes) )
+var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+
+console.log("decryptedText: " + decryptedText)
+// console.log("b: " + b)
+// console.log(b.length)
+
+// var a = [];
+// for (var i = 0; i < kensukeyhex.length; i += 2) {
+//     a.push("0x" + kensukeyhex.substr(i, 2));
+// }
+// console.log(a.length);
+// // console.log(a); // prints the array
+// console.log(a.join(" ")); // turn the array into a string of hex values
+
